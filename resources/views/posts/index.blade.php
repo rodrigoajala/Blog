@@ -10,14 +10,16 @@
             <thead>
             <tr>
                 <th>Título</th>
-                <th>Ações</th>
+                <th>Tema</th>
+                <th class="text-right">Ações</th> <!-- Alinhado à direita -->
             </tr>
             </thead>
             <tbody>
             @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post->title }}</td>
-                    <td>
+                    <td>{{ $post->theme }}</td>
+                    <td class="text-right"> <!-- Alinhando os botões à direita -->
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">Detalhes</a>
                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
