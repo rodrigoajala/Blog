@@ -18,51 +18,53 @@ use Illuminate\Http\Request;
         return view('posts.index',['posts' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'theme' => 'required',
+        ]);
+
+        $this->postService->createPost($data);
+        return redirect()->route('posts.index');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $post = $this->postService->getById($id);
+        return view('posts.show',['post' => $post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $post = $this->postService->getById($id);
+        return view('posts.edit',['post' => $post]);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'theme' => 'required',
+        ]);
+        $this->postService->updatePost($id, $data);
+
+        return redirect()->route('posts.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $this->postService->deletePost($id);
+        return redirect()->route('posts.index');
     }
 }

@@ -1,22 +1,26 @@
 @extends('layouts.app')
 
+@section('title', 'Criar Novo Post')
+
 @section('content')
-    <h2>Criar Novo Post</h2>
-    <form action="{{ route('posts.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="title">Título</label>
-            <input type="text" name="title" id="title" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="description">Descrição</label>
-            <textarea name="description" id="description" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="theme">Tema</label>
-            <input type="text" name="theme" id="theme" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success">Criar Post</button>
-        <a href="{{ route('posts.index') }}" class="btn btn-secondary">Voltar</a>
-    </form>
+    <div class="container">
+        <h1>Criar Novo Post</h1>
+        <form action="{{ route('posts.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" name="title" id="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descrição</label>
+                <textarea class="form-control" name="description" id="description" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="theme" class="form-label">Tema</label>
+                <input type="text" class="form-control" name="theme" id="theme" required>
+            </div>
+            <button type="submit" class="btn btn-success">Criar Post</button>
+            <a href="{{ route('posts.index') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 @endsection

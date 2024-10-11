@@ -12,21 +12,25 @@ class PostService
     }
     public function getById($id)
     {
-        //
+       return Post::query()->findOrFail($id);
     }
     public function createPost($data)
     {
-        //
+        Post::query()->create($data);
     }
 
     public function updatePost($id, $data)
     {
-        //
+        $post = Post::query()->findOrFail($id);
+        $post->update($data);
+        return $post;
     }
 
     public function deletePost($id)
     {
-        //
+        $post = Post::query()->findOrFail($id);
+        $post->delete();
+        return $post;
     }
 
 }
