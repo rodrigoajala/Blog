@@ -67,4 +67,9 @@ use Illuminate\Http\Request;
         $this->postService->deletePost($id);
         return redirect()->route('posts.index');
     }
+
+    public function search(Request $request)
+    {
+        dd($request->get('search'));
+    }
 }
