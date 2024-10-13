@@ -35,14 +35,9 @@ class PostService
 
     public function searchPost($search)
     {
-        $query = Post::query();
-
-        if ($search) {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('theme', 'like', "%{$search}%");
-        }
-
-
+        return Post::where('title', 'like', "%{$search}%")
+            ->orWhere('theme', 'like', "%{$search}%")
+            ->get();
     }
 
 }

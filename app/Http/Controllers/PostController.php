@@ -70,6 +70,8 @@ use Illuminate\Http\Request;
 
     public function search(Request $request)
     {
-        dd($request->get('search'));
+        $data = $request->input('search');
+        $post= $this->postService->searchPost($data);
+        return view('posts.search',['posts' => $post, 'search' => $data]);
     }
 }
